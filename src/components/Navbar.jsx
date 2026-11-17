@@ -19,6 +19,12 @@ function Navbar() {
       >
         연락처
       </NavLink>
+      <NavLink
+        to="/omok"
+        className={({ isActive }) => (isActive ? "active" : "")}
+      >
+        오목
+      </NavLink>
     </nav>
   );
 }

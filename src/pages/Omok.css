@@ -1,0 +1,158 @@
+.omok {
+  --wood: #e3b96d;
+  --wood-edge: #c89a4e;
+  --grid: #5b3f17;
+  --stone-b: #1b1b1f;
+  --stone-w: #f7f5f0;
+  --win: #e2483d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.omok h1 {
+  margin: 8px 0 0;
+}
+.omok-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+.omok-modes {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 3px;
+}
+.omok button {
+  font: inherit;
+  font-size: 15px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-h);
+  border-radius: 999px;
+  padding: 6px 16px;
+  cursor: pointer;
+}
+.omok-modes button {
+  border: none;
+  background: transparent;
+  color: var(--text);
+}
+.omok-modes button.on {
+  background: var(--accent);
+  color: #fff;
+}
+.omok button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.omok button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.omok button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.omok-record {
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+}
+.omok-status {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-h);
+  min-height: 1.5em;
+}
+.omok-status.done {
+  color: var(--accent);
+}
+.omok-board-wrap {
+  width: 100%;
+  max-width: 560px;
+}
+.omok-board {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.25));
+  user-select: none;
+}
+.omok-board .wood {
+  fill: var(--wood);
+  stroke: var(--wood-edge);
+  stroke-width: 3;
+}
+.omok-board .line line {
+  stroke: var(--grid);
+  stroke-width: 1;
+}
+.omok-board .star {
+  fill: var(--grid);
+}
+.omok-board .stone.b {
+  fill: var(--stone-b);
+}
+.omok-board .stone.w {
+  fill: var(--stone-w);
+  stroke: #8a8578;
+  stroke-width: 1;
+}
+.omok-board .stone {
+  animation: omok-drop 0.15s ease-out;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.omok-board .stone.win {
+  stroke: var(--win);
+  stroke-width: 3;
+}
+.omok-board .last.on-b {
+  fill: #fff;
+}
+.omok-board .last.on-w {
+  fill: var(--stone-b);
+}
+.omok-board .ghost {
+  opacity: 0;
+  pointer-events: none;
+}
+.omok-board .ghost.b {
+  fill: var(--stone-b);
+}
+.omok-board .ghost.w {
+  fill: var(--stone-w);
+}
+.omok-board .hit {
+  fill: transparent;
+}
+.omok-board .hit.can {
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .omok-board g:has(.hit.can:hover) .ghost {
+    opacity: 0.4;
+  }
+}
+.omok-actions {
+  display: flex;
+  gap: 10px;
+}
+.omok-help {
+  font-size: 14px;
+}
+@keyframes omok-drop {
+  from {
+    transform: scale(1.3);
+    opacity: 0.4;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .omok-board .stone {
+    animation: none;
+  }
+}
